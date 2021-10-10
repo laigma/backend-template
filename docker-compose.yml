@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  plantilla-back:
+    image: plantilla-back:1.0.0
+    restart: unless-stopped
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    container_name: plantilla-back
+    ports: 
+      - '8102:8102'

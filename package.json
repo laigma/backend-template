@@ -1,0 +1,31 @@
+{
+  "name": "plantilla-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.18.3",
+    "bwip-js": "^2.0.12",
+    "cors": "^2.8.3",
+    "cross-env": "^7.0.2",
+    "custom-env": "^2.0.1",
+    "dotenv": "^8.2.0",
+    "exceljs": "^4.2.0",
+    "express": "^4.16.3",
+    "js-yaml": "^3.3.0",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^1.18.3",
+    "pg": "^8.5.1",
+    "swagger-tools": "0.10.1"
+  }
+}

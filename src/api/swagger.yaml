@@ -1,0 +1,100 @@
+swagger: '2.0'
+info:
+  description: Plantilla Backend NodeJS
+  version: 1.0.0
+  title: plantilla-back
+host: 'localhost:8081'
+basePath: /
+schemes:
+  - http
+consumes:
+  - multipart/form-data
+  - application/json
+  - application/xml
+  - application/x-www-form-urlencoded
+produces:
+  - multipart/form-data
+  - application/json
+  - application/xml
+  - application/x-www-form-urlencoded
+paths:
+  /getRoute:
+    get:
+      operationId: getRoute
+      tags:
+        - GET
+      summary: Descripcion
+      responses:
+        '200':
+          description: Success.
+        '400':
+          description: Error.
+      x-swagger-router-controller: Default
+  /postRoute:
+    post:
+      summary: Descripcion
+      tags:
+        - POST
+      operationId: postRoute
+      parameters:
+      - in: "body"
+        name: "body"
+        description: Descripcion
+        required: true
+        schema:
+          $ref: "#/definitions/schema1"
+      responses:
+        '201':
+          description: Success.
+        '400':
+          description: Error.
+      x-swagger-router-controller: Default
+  /putRoute:
+    put:
+      summary: Descripcion
+      tags:
+        - PUT
+      operationId: putRoute
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          description: Descripcion
+          schema:
+            $ref: "#/definitions/schema1"
+      responses:
+        '200':
+          description: Success.
+        '304':
+          description: Not Modified.
+        '400':
+          description: Error.
+      x-swagger-router-controller: Default
+  /deleteRoute:
+    delete:
+      summary: Descripcion
+      tags:
+        - DELETE
+      operationId: deleteRoute
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          required: true
+          description: ID
+      responses:
+        '200':
+          description: Invalid parameters.
+        '404':
+          description: Invalid SQL Resource name.
+      x-swagger-router-controller: Default
+definitions:
+  schema1:
+    type: "object"
+    properties:
+      clave1:
+        type: "string"
+      clave2:
+        type: "string"
+    xml:
+      name: "NoSAP"

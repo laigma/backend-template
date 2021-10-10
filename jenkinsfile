@@ -1,0 +1,45 @@
+pipeline{
+    agent { node{label 'master'}}
+
+    environment {
+        containerName = "plantilla-back"
+        ports = "8102:8102"
+        registry = ""
+        registryCredential = 'registry' 
+        gitUrl = "https://github.com/laigma/backend-template.git"
+    }
+
+    stages {
+        stage ('Git clone') {
+            steps {
+                git branch: 'master', url: gitUrl
+            }
+        }
+
+        stage ('Build Docker') {
+            steps {
+                script {
+                    dockerImage = docker.build(registry, "-f Dockerfile .")
+                }
+            }
+        }
+
+        stage ('Push Docker') {
+            steps {
+                script {
+                    docker.withRegistry('', registryCredential){
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
+        stage ('Run Docker') {
+            steps {
+                sh 'docker ps -f name=${containerName} -q | xargs --no-run-if-empty docker container stop'
+                sh 'docker container ls -a -fname=${containerName} -q | xargs -r docker container rm'
+                sh 'docker run -d -p ${ports} --name ${containerName} --restart unless-stopped ${registry}'
+            }
+        }
+    }
+}
